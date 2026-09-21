@@ -296,6 +296,17 @@ Resources:
       ComparisonOperator: GreaterThanOrEqualToThreshold
       TreatMissingData: notBreaching
 
+  # Restored by Beacon after incident 5a6d157e-ef0a-4a9c-845c-3120abcc399d: the rule that was
+  # missing at runtime, declared explicitly so drift is visible in review.
+  BeaconRdsSecurityGroupRestored5432Ingress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref RdsSecurityGroup
+      IpProtocol: tcp
+      FromPort: 5432
+      ToPort: 5432
+      SourceSecurityGroupId: !Ref EcsSecurityGroup
+
 Outputs:
   DemoVPCId:
     Value: !Ref DemoVPC
